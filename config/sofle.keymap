@@ -71,6 +71,16 @@
             hold-trigger-on-release;
             hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 42 50 51 52 53 54>;
         };
+
+        sk_shift: sk_shift {
+            compatible = "zmk,behavior-sticky-key";
+            label = "SK_SHIFT";
+            bindings = <&sk>;
+            #binding-cells = <1>;
+            release-after-ms = <500>;
+            quick-release;
+            ignore-modifiers;
+        };
     };
 
     keymap {
@@ -87,11 +97,11 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp GRAVE  &kp N1         &kp N2        &kp N3            &kp N4          &kp N5                                                            &kp N6     &kp N7          &kp N8        &kp N9        &kp N0                 &none
-&kp ESC    &kp Q          &kp W         &kp E             &kp R           &kp T                                                             &kp Y      &kp U           &kp I         &kp O         &kp P                  &kp BSPC
-&kp TAB    &l_mt LCTRL A  &l_mt LALT S  &l_mt LEFT_GUI D  &l_mt LSHIFT F  &kp G                                                             &kp H      &r_mt RSHIFT J  &r_mt RGUI K  &r_mt LALT L  &r_mt RCTRL SEMICOLON  &kp SQT
-&sk LSHFT  &kp Z          &kp X         &kp C             &kp V           &kp B      &kp C_MUTE    &none                                    &kp N      &kp M           &kp COMMA     &kp DOT       &kp FSLH               &sk RSHFT
-                          &kp LGUI      &kp LALT          &kp LCTRL       &mo LOWER  &kp RET       &holdOrTap LA(LC(LG(LEFT_SHIFT))) SPACE  &mo RAISE  &kp RCTRL       &kp RALT      &kp RGUI
+&kp GRAVE  &kp N1         &kp N2        &kp N3            &kp N4                &kp N5                                                            &kp N6     &kp N7          &kp N8        &kp N9        &kp N0                 &none
+&kp ESC    &kp Q          &kp W         &kp E             &kp R                 &kp T                                                             &kp Y      &kp U           &kp I         &kp O         &kp P                  &kp BSPC
+&kp TAB    &l_mt LCTRL A  &l_mt LALT S  &l_mt LEFT_GUI D  &l_mt LSHIFT F        &kp G                                                             &kp H      &r_mt RSHIFT J  &r_mt RGUI K  &r_mt LALT L  &r_mt RCTRL SEMICOLON  &kp SQT
+&sk LSHFT  &kp Z          &kp X         &kp C             &kp V                 &kp B      &kp C_MUTE    &none                                    &kp N      &kp M           &kp COMMA     &kp DOT       &kp FSLH               &sk RSHFT
+                          &kp LGUI      &kp LALT          &sk_shift LA(LSHIFT)  &mo LOWER  &kp RET       &holdOrTap LA(LC(LG(LEFT_SHIFT))) SPACE  &mo RAISE  &kp RCTRL       &kp RALT      &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
